@@ -1,3 +1,4 @@
+#test
 adjPos = open('collins.txt', 'r')
 lines = adjPos.readlines()
 adjPos.close()
