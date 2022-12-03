@@ -1,4 +1,3 @@
-#test
 adjPos = open('collins.txt', 'r')
 lines = adjPos.readlines()
 adjPos.close()
@@ -40,34 +39,30 @@ def getNearest(row,col):
     return final
 board = []
 for i in range(0,5):
-    b1 = input('input: ')
+    b1 = input('input: ') #Input each row by typing in letters
     t = []
     for i in b1:
         t.append(i.upper())
     board.append(t)
-b1 = input('bonus letter (pos/val) (row/col): ')
+b1 = input('bonus letter (pos/val) (row/col): ') #Example: input 002 for DOUBLE letter at 0,0
 dl = [int(b1[0]),int(b1[1])]
 dlv = int(b1[2])
-b1 = input('double word (row/col): ')
+b1 = input('double word (row/col): ') #Example: Input 00 for position 0,0
 dw = [int(b1[0]),int(b1[1])]
 print(dl,dw)
-
-#board = [['L','A','G','E','T'],['O','O','K','A','F'],['O','Q','O','M','O'],['R','O','I','E','L'],['R','A','F','Y','G']]
-# dl = [4,0]
-# dw = [0,1]
 
 row = 0
 col = 0
 lineCounter=0
 words=[]
-for lined in lines:
+for lined in lines: #for each word in dictionary
     lineCounter+=1
     line = lined[:-1]
     word = ''
     flag=False
     for r in board:
         for c in r:
-            if line.startswith(c):
+            if line.startswith(c): #if the letter in the board starts with the same letter at the word
                 counting = True
                 wordPos = 1
                 word+=c
@@ -75,7 +70,7 @@ for lined in lines:
                 co = col
                 path = []
                 path.append([row,col])
-                while counting:
+                while counting: #start trying everything
                     if word==line or len(word)>len(line):
                         break
                     adjPos = getNearest(ro,co) 
@@ -91,7 +86,7 @@ for lined in lines:
                             wordPos+=1
                             flag=False
                             break
-                if word==line:
+                if word==line: #finalize score
                     score = 0
                     letter = 0
                     for l in word:
@@ -114,10 +109,10 @@ for lined in lines:
         col = 0
     row = 0
     col = 0
-words.sort(key=lambda x: x[1],reverse=False)
+words.sort(key=lambda x: x[1],reverse=False) #sort scores to find best word
 for word in words:
     print(word)
-w = input('input word given: ')
+w = input('input word given: ') #ranks your answer
 c = 1
 words.sort(key=lambda x: x[1],reverse=True)
 for word in words:
